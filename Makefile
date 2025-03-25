@@ -37,19 +37,24 @@ SRC_OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(SRC_OBJS) $(LIBFT_LIB)
-	$(CC) $(FLAGS) $(SRC_OBJS) $(LIBFT_LIB) -o $(NAME)
+	@echo ✅  Build the final executable $(NAME) ✅
+	@$(CC) $(FLAGS) $(SRC_OBJS) $(LIBFT_LIB) -o $(NAME)
 
 %.o: %.c
+	@echo 🛠️  Compile .C source files into .o object files  🛠️
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(LIBFT_LIB):
+	@echo 🎱   Build the external library libft.a 🎱
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 
 clean:
+	@echo 🧹 Revome object files
 	@$(MAKE) --no-print-directory clean -C $(LIBFT_DIR)
 	@$(RM) $(SRC_DIR)/*.o
 
 fclean: clean
+	@echo 🧹 Revome libft.a an push_swap executable
 	@$(MAKE) --no-print-directory fclean -C $(LIBFT_DIR)
 	@$(RM) $(NAME)
 

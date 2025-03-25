@@ -6,7 +6,7 @@
 /*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 18:26:31 by mbounoui          #+#    #+#             */
-/*   Updated: 2025/03/25 17:55:28 by mbounoui         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:58:11 by mbounoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,28 +70,40 @@ static int	ft_my_atoi(char *s, t_stack **a, char **tmp)
 	return (res * sign);
 }
 
+void	add_to_stack(char **tmp, t_stack **a)
+{
+	int	j;
+	int	i;
+
+	i = 0;
+	j = 0;
+	while (tmp[i])
+	{
+		j = ft_my_atoi(tmp[i], a, tmp);
+		ft_add_back(a, ft_new_node(j));
+		i++;
+	}
+}
+
 t_stack	*handel_args(char **v)
 {
 	t_stack	*a;
 	char	**tmp;
+	int		i;
 
-	int (i), (j), (f);
-	(1) && (a = NULL, i = 0);
+	a = NULL;
+	i = 1;
 	while (v[i])
 	{
-		(1) && (tmp = ft_split(v[i], ' '), f = 0);
+		tmp = ft_split(v[i], ' ');
 		if (tmp == NULL || *tmp == NULL)
 		{
 			ft_free_str(tmp);
 			ft_error(&a);
-			(free(tmp)), return (NULL);
+			free(tmp);
+			return (NULL);
 		}
-		while (tmp[f])
-		{
-			j = ft_my_atoi(tmp[f], &a, tmp);
-			ft_add_back(&a, ft_new_node(j));
-			f++;
-		}
+		add_to_stack(tmp, &a);
 		ft_free_str(tmp);
 		free(tmp);
 		i++;
