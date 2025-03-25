@@ -6,7 +6,7 @@
 /*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 18:26:31 by mbounoui          #+#    #+#             */
-/*   Updated: 2025/03/25 20:58:11 by mbounoui         ###   ########.fr       */
+/*   Updated: 2025/03/25 21:36:40 by mbounoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ t_stack	*handel_args(char **v)
 		if (tmp == NULL || *tmp == NULL)
 		{
 			ft_free_str(tmp);
-			ft_error(&a);
 			free(tmp);
+			ft_error(&a);
 			return (NULL);
 		}
 		add_to_stack(tmp, &a);
